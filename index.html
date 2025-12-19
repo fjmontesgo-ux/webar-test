@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <title>Prueba WebAR</title>
-    <script type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-    </script>
-    <style>
-      body { margin: 0; background: #000; }
-      model-viewer {
-        width: 100vw;
-        height: 100vh;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Prueba AR</title>
+  <!-- Importa model-viewer desde CDN -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body style="margin:0; padding:0;">
 
-  <body>
-  <model-viewer
-  src="modelo.glb"
-  ar
-  ar-modes="webxr scene-viewer quick-look"
-  ar-placement="floor"
-  camera-controls="false"
-  disable-zoom
-  disable-pan
-  auto-rotate="false"
-  shadow-intensity="1"
-  style="width:100vw; height:100vh;">
+<!-- Model-viewer con AR -->
+<model-viewer
+    src="modelo.glb"
+    alt="Mi modelo 3D"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    ar-placement="floor"
+    camera-controls
+    auto-rotate
+    style="width:100vw; height:100vh;">
 </model-viewer>
 
-  </body>
+</body>
 </html>
+
+
 
 
