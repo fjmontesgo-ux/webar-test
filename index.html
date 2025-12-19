@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visor 3D</title>
 
-  <!-- model-viewer -->
   <script
     type="module"
     src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
@@ -32,11 +31,11 @@
     src="modelo.glb"
     camera-controls
     disable-pan
-    min-camera-orbit="0deg 90deg 1.2m"
-    max-camera-orbit="0deg 90deg 4m"
-    min-field-of-view="20deg"
-    max-field-of-view="45deg"
-    camera-target="0m 1m 0m"
+    min-camera-orbit="0deg 90deg 3m"
+    max-camera-orbit="0deg 90deg 10m"
+    min-field-of-view="30deg"
+    max-field-of-view="60deg"
+    camera-target="0m 0.6m 0m"
     exposure="1"
     shadow-intensity="0">
   </model-viewer>
@@ -45,22 +44,22 @@
     const viewer = document.getElementById('viewer');
 
     let targetX = 0;
-    let targetY = 1;
+    let targetY = 0.6;
 
-    const LIMIT_X = 1.2;
-    const LIMIT_Y_MIN = 0.2;
-    const LIMIT_Y_MAX = 2;
+    const LIMIT_X = 3;
+    const LIMIT_Y_MIN = -1;
+    const LIMIT_Y_MAX = 3;
 
     function updateTarget() {
       viewer.cameraTarget = `${targetX}m ${targetY}m 0m`;
     }
 
-    // Scroll / rueda (PC)
+    // Scroll (PC)
     viewer.addEventListener('wheel', (e) => {
       e.preventDefault();
 
-      targetX += e.deltaX * 0.001;
-      targetY -= e.deltaY * 0.001;
+      targetX += e.deltaX * 0.002;
+      targetY -= e.deltaY * 0.002;
 
       targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
       targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
@@ -84,8 +83,8 @@
         const dx = e.touches[0].clientX - lastX;
         const dy = e.touches[0].clientY - lastY;
 
-        targetX -= dx * 0.002;
-        targetY += dy * 0.002;
+        targetX -= dx * 0.004;
+        targetY += dy * 0.004;
 
         targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
         targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
@@ -105,6 +104,8 @@
 
 </body>
 </html>
+
+
 
 
 
