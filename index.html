@@ -4,20 +4,54 @@
   <meta charset="UTF-8">
   <title>Prueba AR</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; padding: 0; }
+    #ar-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: #4285f4;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0;">
-  <model-viewer
-      src="modelo.glb"
-      alt="Modelo 3D"
-      ar
-      ar-modes="scene-viewer webxr quick-look"
-      ar-placement="floor"
-      camera-controls
-      auto-rotate
-      style="width:100vw; height:100vh;">
-  </model-viewer>
+<body>
+
+<!-- Model 3D en pantalla -->
+<model-viewer
+    src="modelo.glb"
+    alt="Modelo 3D"
+    camera-controls
+    auto-rotate
+    style="width:100vw; height:100vh;">
+</model-viewer>
+
+<!-- Botón AR para Android -->
+<button id="ar-button">Abrir en AR</button>
+
+<script>
+  // Reemplaza TUUSUARIO con tu nombre de usuario de GitHub
+  const modeloURL = "https://TUUSUARIO.github.io/webar/modelo.glb";
+
+  const arButton = document.getElementById("ar-button");
+  arButton.addEventListener("click", () => {
+    // URL intent para abrir Scene Viewer en Android
+    const intentURL = `intent://arvr.google.com/scene-viewer/1.0?file=${modeloURL}#Intent;package=com.google.android.googlequicksearchbox;scheme=https;end;`;
+    window.location.href = intentURL;
+  });
+</script>
+
 </body>
 </html>
+
+
 
 
 
