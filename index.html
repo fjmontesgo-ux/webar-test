@@ -16,13 +16,20 @@
   </head>
 
   <body>
-    <model-viewer
-      src="modelo.glb"
-      ar
-      ar-modes="scene-viewer webxr quick-look"
-      camera-controls
-      auto-rotate
-      shadow-intensity="1">
-    </model-viewer>
+  <model-viewer
+  src="modelo.glb"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  ar-placement="floor"
+  camera-controls="false"
+  disable-zoom
+  disable-pan
+  auto-rotate="false"
+  shadow-intensity="1"
+  style="width:100vw; height:100vh;">
+</model-viewer>
+
   </body>
 </html>
+
+
