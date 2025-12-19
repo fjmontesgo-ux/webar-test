@@ -20,6 +20,7 @@
     model-viewer {
       width: 100vw;
       height: 100vh;
+      touch-action: none;
     }
   </style>
 </head>
@@ -31,7 +32,7 @@
     src="modelo.glb"
     camera-controls
     disable-pan
-    min-camera-orbit="0deg 90deg 3m"
+    min-camera-orbit="0deg 90deg 5m"
     max-camera-orbit="0deg 90deg 10m"
     min-field-of-view="30deg"
     max-field-of-view="60deg"
@@ -47,8 +48,8 @@
     let targetY = 0.6;
 
     const LIMIT_X = 3;
-    const LIMIT_Y_MIN = -1;
-    const LIMIT_Y_MAX = 3;
+    const LIMIT_Y_MIN = -3;
+    const LIMIT_Y_MAX = 4;
 
     function updateTarget() {
       viewer.cameraTarget = `${targetX}m ${targetY}m 0m`;
@@ -59,7 +60,7 @@
       e.preventDefault();
 
       targetX += e.deltaX * 0.002;
-      targetY -= e.deltaY * 0.002;
+      targetY -= e.deltaY * 0.004;
 
       targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
       targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
@@ -84,7 +85,7 @@
         const dy = e.touches[0].clientY - lastY;
 
         targetX -= dx * 0.004;
-        targetY += dy * 0.004;
+        targetY += dy * 0.008;
 
         targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
         targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
@@ -104,6 +105,7 @@
 
 </body>
 </html>
+
 
 
 
