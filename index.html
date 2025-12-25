@@ -33,11 +33,11 @@
     camera-controls
     disable-pan
 
-    <!-- 🔍 ZOOM -->
-    min-camera-orbit="-5deg 85deg 7m"   <!-- zoom IN: igual -->
-    max-camera-orbit="5deg 95deg 8m"    <!-- zoom OUT: reducido -->
+    <!-- 🔒 ROTACIÓN TOTALMENTE BLOQUEADA -->
+    min-camera-orbit="0deg 90deg 7m"
+    max-camera-orbit="0deg 90deg 8m"
 
-    <!-- 🎥 FOV -->
+    <!-- 🔍 ZOOM -->
     min-field-of-view="30deg"
     max-field-of-view="60deg"
 
@@ -55,7 +55,7 @@
     const LIMIT_Y_MIN = -3;
     const LIMIT_Y_MAX = 4;
 
-    // 🚀 Paneo muy rápido (sin cambios)
+    // 🚀 Paneo rápido
     const WHEEL_X_SPEED = 0.012;
     const WHEEL_Y_SPEED = 0.024;
     const TOUCH_X_SPEED = 0.020;
