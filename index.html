@@ -51,6 +51,12 @@
     const LIMIT_Y_MIN = -3;
     const LIMIT_Y_MAX = 4;
 
+    // 🔥 Velocidad de paneo (sube/baja estos valores si quieres aún más/menos)
+    const WHEEL_X_SPEED = 0.006; // antes 0.002
+    const WHEEL_Y_SPEED = 0.012; // antes 0.004
+    const TOUCH_X_SPEED = 0.010; // antes 0.004
+    const TOUCH_Y_SPEED = 0.018; // antes 0.008
+
     function updateTarget() {
       viewer.cameraTarget = `${targetX}m ${targetY}m 0m`;
     }
@@ -59,8 +65,8 @@
     viewer.addEventListener('wheel', (e) => {
       e.preventDefault();
 
-      targetX += e.deltaX * 0.002;
-      targetY -= e.deltaY * 0.004;
+      targetX += e.deltaX * WHEEL_X_SPEED;
+      targetY -= e.deltaY * WHEEL_Y_SPEED;
 
       targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
       targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
@@ -84,8 +90,8 @@
         const dx = e.touches[0].clientX - lastX;
         const dy = e.touches[0].clientY - lastY;
 
-        targetX -= dx * 0.004;
-        targetY += dy * 0.008;
+        targetX -= dx * TOUCH_X_SPEED;
+        targetY += dy * TOUCH_Y_SPEED;
 
         targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
         targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
