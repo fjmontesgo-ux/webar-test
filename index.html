@@ -33,10 +33,11 @@
     camera-controls
     disable-pan
 
-    <!-- 🎥 ZOOM CONTROLADO -->
-    min-camera-orbit="0deg 90deg 7.5m"
-    max-camera-orbit="0deg 90deg 10m"
+    <!-- 🔄 ROTACIÓN LIMITADA -->
+    min-camera-orbit="-25deg 70deg 7m"
+    max-camera-orbit="25deg 110deg 10m"
 
+    <!-- 🔍 ZOOM CONTROLADO -->
     min-field-of-view="30deg"
     max-field-of-view="60deg"
 
@@ -93,4 +94,24 @@
         const dx = e.touches[0].clientX - lastX;
         const dy = e.touches[0].clientY - lastY;
 
-        targetX -= dx * TOUCH_X_S*
+        targetX -= dx * TOUCH_X_SPEED;
+        targetY += dy * TOUCH_Y_SPEED;
+
+        targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
+        targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
+
+        updateTarget();
+
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    });
+
+    viewer.addEventListener('touchend', () => {
+      lastX = null;
+      lastY = null;
+    });
+  </script>
+
+</body>
+</html>
