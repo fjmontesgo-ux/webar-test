@@ -30,25 +30,18 @@
   <model-viewer
     id="viewer"
     src="modelo.glb"
-
     camera-controls
     disable-pan
 
-    min-camera-orbit="0deg 90deg 5m"
+    <!-- 🎥 ZOOM CONTROLADO -->
+    min-camera-orbit="0deg 90deg 7.5m"
     max-camera-orbit="0deg 90deg 10m"
+
     min-field-of-view="30deg"
     max-field-of-view="60deg"
+
     camera-target="0m 0.6m 0m"
-
-    <!-- 🔅 ILUMINACIÓN SUAVE -->
-    exposure="0.65"
-    tone-mapping="neutral"
-    environment-image="neutral"
-    shadow-intensity="0"
-    disable-default-light
-
-    interaction-prompt="none"
-    background-color="#000000">
+    shadow-intensity="0">
   </model-viewer>
 
   <script>
@@ -61,11 +54,11 @@
     const LIMIT_Y_MIN = -3;
     const LIMIT_Y_MAX = 4;
 
-    // 🚀 Paneo más rápido
-    const WHEEL_X_SPEED = 0.006;
-    const WHEEL_Y_SPEED = 0.012;
-    const TOUCH_X_SPEED = 0.010;
-    const TOUCH_Y_SPEED = 0.018;
+    // 🚀 Paneo MUY rápido
+    const WHEEL_X_SPEED = 0.012;
+    const WHEEL_Y_SPEED = 0.024;
+    const TOUCH_X_SPEED = 0.020;
+    const TOUCH_Y_SPEED = 0.036;
 
     function updateTarget() {
       viewer.cameraTarget = `${targetX}m ${targetY}m 0m`;
@@ -100,24 +93,4 @@
         const dx = e.touches[0].clientX - lastX;
         const dy = e.touches[0].clientY - lastY;
 
-        targetX -= dx * TOUCH_X_SPEED;
-        targetY += dy * TOUCH_Y_SPEED;
-
-        targetX = Math.max(-LIMIT_X, Math.min(LIMIT_X, targetX));
-        targetY = Math.max(LIMIT_Y_MIN, Math.min(LIMIT_Y_MAX, targetY));
-
-        updateTarget();
-
-        lastX = e.touches[0].clientX;
-        lastY = e.touches[0].clientY;
-      }
-    });
-
-    viewer.addEventListener('touchend', () => {
-      lastX = null;
-      lastY = null;
-    });
-  </script>
-
-</body>
-</html>
+        targetX -= dx * TOUCH_X_S*
